@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "490022",
+      "name": "device_hub",
+      "font_class": "devicehub",
+      "unicode": "eaff",
+      "unicode_decimal": 60159
+    },
+    {
+      "icon_id": "702679",
+      "name": "history",
+      "font_class": "history",
+      "unicode": "e8cd",
+      "unicode_decimal": 59597
+    },
+    {
+      "icon_id": "1116874",
+      "name": "link",
+      "font_class": "link",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "11981535",
+      "name": "dashboard",
+      "font_class": "dashboard",
+      "unicode": "e94f",
+      "unicode_decimal": 59727
+    }
+  ]
+}
