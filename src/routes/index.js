@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { Dashboard, Home } from '../pages'
 
@@ -6,6 +6,7 @@ export default [
   {
     path: "/",
     component: Home,
+    name: 'Home',
     routes: [
       {
         path: "/",
@@ -16,7 +17,8 @@ export default [
       },
       {
         path: '/dashboard',
-        component: Dashboard
+        component: Dashboard,
+        name: 'Dashboard'
       }
     ]
   }

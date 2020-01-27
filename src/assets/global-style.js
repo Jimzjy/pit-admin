@@ -18,7 +18,12 @@ const noWrap = () => {
 }
 
 export default {
-  'primary-color': '#d44439',
+  'primary-color': '#141468',
+  'accent-color': '#ffda0a',
+  'bg-color': '#f6f7fa',
+  'grey': '#8a97b4',
+  'red': '#fd7376',
+  'text-light': '#b8b8b8',
   extendClick,
   noWrap
 }

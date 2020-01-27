@@ -1,0 +1,1 @@
+export const UPDATE_NAV_NAME = 'home/update_nav_name'

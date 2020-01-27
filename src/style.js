@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		box-sizing: border-box;
 	}
 	/* HTML5 display-role reset for older browsers */
 	article, aside, details, figcaption, figure, 
@@ -30,7 +31,8 @@ export const GlobalStyle = createGlobalStyle`
 		line-height: 1;
 	}
 	html, body {
-		background: #f2f3f4;;
+		background: #fff;
+		font-family: 'Ubuntu', sans-serif;
 	}
 	ol, ul {
 		list-style: none;
