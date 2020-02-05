@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Dashboard, Home, Device, History, Link, NotFound } from '../pages'
+import { Dashboard, Home, Device, History, NotFound } from '../pages'
 
 export default [
   {
@@ -29,11 +29,6 @@ export default [
         path: '/history',
         component: History,
         name: 'History'
-      },
-      {
-        path: '/link',
-        component: Link,
-        name: 'Link'
       },
       {
         path: '*',

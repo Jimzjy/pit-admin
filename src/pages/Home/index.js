@@ -48,11 +48,6 @@ function Home (props) {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/link">
-            <span className="iconfont">&#xe614;</span>
-          </NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink to="/history">
             <span className="iconfont">&#xe8cd;</span>
           </NavLink>
