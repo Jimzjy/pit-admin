@@ -27,6 +27,34 @@
       "unicode_decimal": 58900
     },
     {
+      "icon_id": "2794636",
+      "name": "星球",
+      "font_class": "xingqiu",
+      "unicode": "e8e7",
+      "unicode_decimal": 59623
+    },
+    {
+      "icon_id": "10715454",
+      "name": "星",
+      "font_class": "xing",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "11758222",
+      "name": "右箭头",
+      "font_class": "youjiantou",
+      "unicode": "e751",
+      "unicode_decimal": 59217
+    },
+    {
+      "icon_id": "11904598",
+      "name": "help",
+      "font_class": "help",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
       "icon_id": "11981535",
       "name": "dashboard",
       "font_class": "dashboard",
