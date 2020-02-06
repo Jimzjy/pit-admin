@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { action } from '../../store/dashboard'
@@ -7,33 +7,28 @@ import './style.scss'
 import { Table } from '../../components'
 
 function Dashboard(props) {
-  const { route } = props
+  const { route, dashboard } = props
+  const [status, setStatus] = useState([
+    { name: '总设备数', value: 0},
+    { name: '今日总活跃度', value: 0},
+    { name: '错误', value: 0},
+    { name: '警告', value: 0}
+  ])
 
   useEffect(() => {
     props.dispatchUpdateNavName(route.name)
+    // props.dispatchGetWeekHistory()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const add = () => {
-  //   dispatchAdd(2)
-  // }
-
-  const data = [
-    { time: '0205', value: 10 },
-    { time: '0206', value: 23 },
-    { time: '0207', value: 34 },
-    { time: '0208', value: 20 },
-    { time: '0209', value: 80 },
-    { time: '0210', value: 40 },
-    { time: '0211', value: 10 }
-  ];
-
-  const statusData = [
-    { name: '总设备数', value: 100},
-    { name: '总活跃度', value: 100},
-    { name: '错误', value: 0},
-    { name: '警告', value: 0}
-  ]
+  useEffect(() => {
+    setStatus([
+      { name: '总设备数', value: dashboard.devices.length},
+      { name: '今日总活跃度', value: dashboard.dayActivity.reduce((a, c) => a + c.value, 0)},
+      { name: '错误', value: 0},
+      { name: '警告', value: 0}
+    ])
+  }, [dashboard])
 
   return (
     <div className='dashboard'>
@@ -48,7 +43,7 @@ function Dashboard(props) {
             </div>
             <div>
               <div className='most-device_title'>今日最活跃设备</div>
-              <div className='most-device_text'>Lock</div>
+              <div className='most-device_text'>lock</div>
             </div>
           </div>
           <div className="card most-device" style={{ background: '#fff' }}>
@@ -57,20 +52,20 @@ function Dashboard(props) {
             </div>
             <div>
               <div className='most-device_title'>今日我使用最多</div>
-              <div className='most-device_text'>Lock</div>
+              <div className='most-device_text'>lock</div>
             </div>
           </div>
         </div>
         <div className='card status'>
           <div className='card_title'>状态</div>
-          <Table data={statusData}></Table>
+          <Table data={status}></Table>
         </div>
       </div>
       <div className='block'>
         <div className='card active-record'>
           <div className='card_title' style={{ color: '#fff' }}>周活跃度记录</div>
           <ResponsiveContainer width='100%' height='100%'>
-            <LineChart data={data}>
+            <LineChart data={dashboard.weekActivity}>
               <Line type="monotone" dataKey="value" stroke="#ffda0a" />
               <XAxis dataKey="time" tickLine={false} stroke='#ffffff66'/>
               <Tooltip></Tooltip>
@@ -80,7 +75,7 @@ function Dashboard(props) {
         <div className='card active-today'>
           <div className='card_title'>日活跃度分布</div>
           <ResponsiveContainer width='100%' height='100%'>
-            <BarChart data={data}>
+            <BarChart data={dashboard.dayActivity}>
               <XAxis dataKey="time" />
               <Tooltip />
               <Bar dataKey="value" fill="#ffda0a"/>
@@ -95,8 +90,8 @@ function Dashboard(props) {
 const mapStateToProps = ({ dashboard, home }) => ({ dashboard, home });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchAdd(data) {
-    dispatch(action.add(data))
+  dispatchGetWeekHistory() {
+    dispatch(action.getWeekHistoryAsync())
   },
   dispatchUpdateNavName(name) {
     dispatch(homeAction.updateNavName(name))

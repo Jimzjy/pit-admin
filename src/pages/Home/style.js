@@ -5,6 +5,7 @@ export const Main = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+  overflow: hidden;
 `
 
 export const Nav = styled.div`
@@ -144,6 +145,7 @@ export const User = styled.div`
       background: ${style["primary-color"]};
       border-radius: 18px;
       overflow: auto;
+      height: 340px;
 
       .recent_item {
         .recent_item_block {

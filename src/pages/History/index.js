@@ -5,24 +5,16 @@ import './style.scss'
 import { Table } from '../../components'
 
 function History(props) {
-  const { route } = props
+  const { route, dashboard } = props
 
   useEffect(() => {
     props.dispatchUpdateNavName(route.name)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const data = [
-    { user: 'jim', device: 'lock', command: 'open', time: '2019-02-05' },
-    { user: 'jim', device: 'lock', command: 'open', time: '2019-02-05' },
-    { user: 'jim', device: 'lock', command: 'open', time: '2019-02-05' },
-    { user: 'jim', device: 'lock', command: 'open', time: '2019-02-05' },
-    { user: 'jim', device: 'lock', command: 'open', time: '2019-02-05' }
-  ]
-
   return (
     <div className='history'>
-      <Table data={data}></Table>
+      <Table data={dashboard.history}></Table>
     </div>
   )
 }

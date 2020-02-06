@@ -4,6 +4,7 @@ import './style.scss'
 function Table(props) {
   const { data, options,  } = props
   const keys = useMemo(() => {
+    if (!data.length) return []
     const _keys = Object.keys(data[0])
     if (options) _keys.push('options')
 
@@ -12,6 +13,7 @@ function Table(props) {
     </div>)
   }, [data, options])
   const rows = useMemo(() => {
+    if (!data.length) return []
     return data.map((item, index) => <div className='table_row' key={index}>
       { Object.keys(data[0]).map(el => <div className='table_row_item' key={el}>
         { typeof item[el] === 'object' ? '编辑查看' : item[el] }

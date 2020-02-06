@@ -1,33 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { renderRoutes } from "react-router-config";
 import { NavLink } from 'react-router-dom'
 import { connect } from "react-redux";
 import style from '../../assets/global-style';
 import { Main, Nav, Logo, NavItem, Middle, User, Divide, Label } from './style'
+import { action as dashboardAction } from '../../store/dashboard'
 
 function Home (props) {
-  const { route, home } = props
+  const { route, home, dashboard } = props
 
-  const recentData = [
-    {
-      device: 'Lock',
-      command: 'open',
-      date: 1580801816154,
-      id: 0
-    },
-    {
-      device: 'Lock',
-      command: 'open',
-      date: 1580801816154,
-      id: 1
-    },
-    {
-      device: 'Lock',
-      command: 'open',
-      date: 1580801816154,
-      id: 2
-    }
-  ]
+  useEffect(() => {
+    props.dispatchGetWeekHistory()
+    props.dispatchGetAllDevices()
+    props.dispatchGetAllHistory()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Main>
@@ -83,21 +70,21 @@ function Home (props) {
               <div className="label_title">设备数</div>
               <div className='label_content'>
                 <div className='label_content_deco'></div>
-                <div className='label_content_text'>100</div>
+                <div className='label_content_text'>{ dashboard.devices.length }</div>
               </div>
             </Label>
             <Label color={style["accent-color"]}>
               <div className="label_title">活跃度</div>
               <div className='label_content'>
                 <div className='label_content_deco'></div>
-                <div className='label_content_text'>100</div>
+                <div className='label_content_text'>{dashboard.dayActivity.reduce((a, c) => a + c.value, 0)}</div>
               </div>
             </Label>
           </div>
           <Divide></Divide>
           <div className='recent_title'>最近活动</div>
           <div className='recent'>
-            { recentData.map(item => <div className='recent_item' key={item.id}>
+            { dashboard.userHistory.map((item, index) => <div className='recent_item' key={index}>
               <div className='recent_item_date'>{ item.date }</div>
               <div className='recent_item_block'>
                 <div className="recent_item_text">{ item.device }</div>
@@ -112,6 +99,18 @@ function Home (props) {
   )
 }
 
-const mapStateToProps = ({ home }) => ({ home });
+const mapStateToProps = ({ home, dashboard }) => ({ home, dashboard });
 
-export default connect(mapStateToProps)(React.memo(Home));
+const mapDispatchToProps = (dispatch) => ({
+  dispatchGetWeekHistory() {
+    dispatch(dashboardAction.getWeekHistoryAsync())
+  },
+  dispatchGetAllDevices() {
+    dispatch(dashboardAction.getAllDevicesAsync())
+  },
+  dispatchGetAllHistory() {
+    dispatch(dashboardAction.getAllHistoryAsync())
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Home));

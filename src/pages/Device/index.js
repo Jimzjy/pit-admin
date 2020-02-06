@@ -8,66 +8,25 @@ function Device(props) {
   const [ showDeleteModal, setShowDeleteModal ] = useState(false)
   const [ showEditModal, setShowEditModal ] = useState(false)
   const [ editModalData, setEditModalData ] = useState({ name: '', id: '', commands: [], links: [], tmpCommand: '', tmpLink: { to: '', from: '', toID: '' } })
-  const { route } = props
+  const [ idData, setIDData ] = useState({})
+  const { route, dashboard } = props
 
   useEffect(() => {
     props.dispatchUpdateNavName(route.name)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const data = [
-    {
-      id: "5e131c3a126ec674b2ac595f",
-      name: "servo",
-      commands: [
-        "rotate", "aaa", "bbb"
-      ],
-      links: []
-    },
-    {
-      id: "5e131c58126ec674b2ac5960",
-      name: "user",
-      commands: [
-        "open"
-      ],
-      links: [
-        {
-          to: "rotate",
-          from: "open",
-          toID: "5e131c3a126ec674b2ac595f"
-        }
-      ]
-    }
-  ]
-
-  const idData = {
-    "5e131c3a126ec674b2ac595f": {
-      id: "5e131c3a126ec674b2ac595f",
-      name: "servo",
-      commands: [
-        "rotate", "aaa", "bbb"
-      ],
-      links: []
-    },
-    '5e131c58126ec674b2ac5960': {
-      id: "5e131c58126ec674b2ac5960",
-      name: "user",
-      commands: [
-        "open"
-      ],
-      links: [
-        {
-          to: "rotate",
-          from: "open",
-          toID: "5e131c3a126ec674b2ac595f"
-        }
-      ]
-    }
-  }
+  useEffect(() => {
+    const obj = {}
+    dashboard.devices.forEach(item => {
+      obj[item.id] = item
+    })
+    setIDData(obj)
+  }, [dashboard])
 
   const options = [
     { name: '编辑', onClick: (index) => {
-      setEditModalData({...data[index], tmpCommand: '', tmpLink: { to: '', from: '', toID: '' }})
+      setEditModalData({...dashboard.devices[index], tmpCommand: '', tmpLink: { to: '', from: '', toID: '' }})
       setShowEditModal(true)
     } },
     { name: '删除', onClick: () => {
@@ -151,7 +110,7 @@ function Device(props) {
 
   return (
     <div className='device'>
-      <Table data={data} options={options}></Table>
+      <Table data={dashboard.devices} options={options}></Table>
       <Modal show={showDeleteModal}>
         <div className='delete'>
           <div className='delete_text'>确认删除?</div>
@@ -194,7 +153,7 @@ function Device(props) {
               <div className='edit_item_dropdown'>
                 <div className='edit_item_dropdown_selected'>{ editModalData.tmpLink.toID === '' ? '---' : idData[editModalData.tmpLink.toID].name }</div>
                 <ul className='edit_item_dropdown_list' onClick={onDropDownToIDChange}>
-                  { data.map(item => <li className='edit_item_dropdown_list_item' key={item.id} data-id={item.id}>
+                  { dashboard.devices.map(item => <li className='edit_item_dropdown_list_item' key={item.id} data-id={item.id}>
                     { item.name }
                   </li>) }
                 </ul>
