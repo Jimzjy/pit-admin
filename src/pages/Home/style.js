@@ -14,6 +14,12 @@ export const Nav = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
+  .exit {
+    position: absolute;
+    bottom: 0;
+  }
 `
 
 export const Logo = styled.div`

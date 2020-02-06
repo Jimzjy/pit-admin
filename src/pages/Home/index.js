@@ -52,6 +52,13 @@ function Home (props) {
             <span className="iconfont">&#xe8cd;</span>
           </NavLink>
         </NavItem>
+        <div className='exit'>
+          <NavItem>
+            <NavLink to="/login">
+              <span className="iconfont">&#xe62c;</span>
+            </NavLink>
+          </NavItem>
+        </div>
       </Nav>
       <Middle>
         <div className='header'>{ home.navName }</div>

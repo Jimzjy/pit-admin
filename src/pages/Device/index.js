@@ -100,8 +100,8 @@ function Device(props) {
   const renderLinks = () => {
     const items = []
 
-    editModalData.links.forEach(obj => {
-      items.push(<div className='edit_item'>
+    editModalData.links.forEach((obj, index) => {
+      items.push(<div className='links' key={index}>
         <div className='edit_item_tag'>{ obj.from }</div>
         <div className='iconfont' style={{ marginBottom: '10px', marginRight: '10px', color: '#ffda0a' }}>&#xe751;</div>
         <div className='edit_item_tag'>{ idData[obj.toID].name }</div>
@@ -189,7 +189,7 @@ function Device(props) {
                 </ul>
               </div>
             </div>
-            <div className='iconfont' style={{ marginBottom: '10px', marginRight: '10px', color: '#ffda0a' }}>&#xe751;</div>
+            <div className='iconfont' style={{ marginRight: '10px', color: '#ffda0a' }}>&#xe751;</div>
             <div className='edit_item_dropdown_wrapper'>
               <div className='edit_item_dropdown'>
                 <div className='edit_item_dropdown_selected'>{ editModalData.tmpLink.toID === '' ? '---' : idData[editModalData.tmpLink.toID].name }</div>

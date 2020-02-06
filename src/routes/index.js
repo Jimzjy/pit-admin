@@ -1,8 +1,13 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Dashboard, Home, Device, History, NotFound } from '../pages'
+import { Dashboard, Home, Device, History, NotFound, Login } from '../pages'
 
 export default [
+  {
+    path: '/login',
+    component: Login,
+    name: 'Login'
+  },
   {
     path: "/",
     component: Home,

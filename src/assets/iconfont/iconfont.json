@@ -48,6 +48,13 @@
       "unicode_decimal": 59623
     },
     {
+      "icon_id": "7831465",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
       "icon_id": "10715454",
       "name": "星",
       "font_class": "xing",
