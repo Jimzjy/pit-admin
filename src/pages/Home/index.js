@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { renderRoutes } from "react-router-config";
 import { NavLink } from 'react-router-dom'
 import { connect } from "react-redux";
@@ -7,9 +7,16 @@ import { Main, Nav, Logo, NavItem, Middle, User, Divide, Label } from './style'
 import { action as dashboardAction } from '../../store/dashboard'
 
 function Home (props) {
-  const { route, home, dashboard } = props
+  const { route, home, dashboard, history } = props
+  const [user, setUser] = useState({ name: '', id: '' })
 
   useEffect(() => {
+    const storageUser = localStorage.getItem('user')
+    if (!storageUser) {
+      history.push('/login')
+      return
+    }
+    setUser(JSON.parse(storageUser))
     props.dispatchGetWeekHistory()
     props.dispatchGetAllDevices()
     props.dispatchGetAllHistory()
@@ -58,7 +65,7 @@ function Home (props) {
           <div className='content_user'>
             <div className='content_user_left'>
               <div>Hello,</div>
-              <div className='name'>Jim</div>
+              <div className='name'>{ user.name }</div>
             </div>
             <div className='content_user_right'>
               <img className='content_user_right_avatar' src={require('../../assets/img/user.png')} alt='user'/>
