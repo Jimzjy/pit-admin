@@ -59,7 +59,7 @@ export const getWeekHistoryAsync = () => {
         }
       }
       
-      dispatch(getWeekHistory({ weekActivity, dayActivity, userHistory }))
+      dispatch(getWeekHistory({ weekActivity, dayActivity, userHistory: userHistory.reverse() }))
     })
   }
 }

@@ -80,6 +80,7 @@ export const Middle = styled.div`
   .nav-content {
     overflow: auto;
     padding: 20px;
+    height: 100%;
   }
 
   .header {

@@ -36,7 +36,7 @@ function Login(props) {
       <div className='login_card'>
         <div className='login_card_title'>登录</div>
         <input className='login_input' placeholder='用户名' value={name} onChange={onNameChange}></input>
-        <input className='login_input' placeholder='密码' value={password} onChange={onPassChange}></input>
+        <input className='login_input' placeholder='密码' value={password} type="password" onChange={onPassChange}></input>
         <div className='login_button' onClick={onLoginClick}>登录</div>
       </div>
     </div>
