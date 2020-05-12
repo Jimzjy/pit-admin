@@ -69,6 +69,7 @@ function Device(props) {
         <div className='iconfont' style={{ marginBottom: '10px', marginRight: '10px', color: '#ffda0a' }}>&#xe751;</div>
         <div className='edit_item_tag'>{ idData[obj.toID].name }</div>
         <div className='edit_item_tag'>{ obj.to }</div>
+        <span className='iconfont edit_item_tag_delete' onClick={() => {removeLink(index)}}>&#xe624;</span>
       </div>)
     })
     
@@ -110,6 +111,14 @@ function Device(props) {
         tmpLink: { to: '', from: '', toID: '' }
       })
     }
+  }
+
+  const removeLink = (index) => {
+    const links = editModalData.links
+    links.splice(index, 1)
+    setEditModalData({
+      ...editModalData
+    })
   }
 
   const addDevice = () => {

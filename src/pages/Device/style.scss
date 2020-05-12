@@ -104,6 +104,15 @@
           cursor: pointer;
         }
       }
+
+      &_delete {
+        margin-bottom: 10px;
+        color: $primary-color;
+        &:hover {
+          opacity: 0.8;
+          cursor: pointer;
+        }
+      }
     }
 
     &_dropdown {
