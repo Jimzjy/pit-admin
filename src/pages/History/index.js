@@ -14,7 +14,7 @@ function History(props) {
 
   return (
     <div className='history'>
-      <Table data={dashboard.history}></Table>
+      <Table data={dashboard.history.reverse()}></Table>
     </div>
   )
 }
