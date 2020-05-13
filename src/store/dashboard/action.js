@@ -44,7 +44,7 @@ export const getWeekHistoryAsync = () => {
         weekActivity.push({ time: formatDate(zeroWeek + i * 86400000, 'm-d'), value: 0 })
       }
 
-      for (let i = 0; i < data.length; i++) {
+      for (let i = data.length - 1; i >= 0; i--) {
         const item = data[i]
         const time = +data[i].time
 
@@ -59,7 +59,7 @@ export const getWeekHistoryAsync = () => {
         }
       }
       
-      dispatch(getWeekHistory({ weekActivity, dayActivity, userHistory: userHistory.reverse() }))
+      dispatch(getWeekHistory({ weekActivity, dayActivity, userHistory: userHistory }))
     })
   }
 }
