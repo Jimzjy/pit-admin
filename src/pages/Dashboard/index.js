@@ -43,7 +43,7 @@ function Dashboard(props) {
             </div>
             <div>
               <div className='most-device_title'>今日最活跃设备</div>
-              <div className='most-device_text'>lock</div>
+              <div className='most-device_text'>blue</div>
             </div>
           </div>
           <div className="card most-device" style={{ background: '#fff' }}>
@@ -52,7 +52,7 @@ function Dashboard(props) {
             </div>
             <div>
               <div className='most-device_title'>今日我使用最多</div>
-              <div className='most-device_text'>lock</div>
+              <div className='most-device_text'>blue</div>
             </div>
           </div>
         </div>
